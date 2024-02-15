@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +24,12 @@ public class StudentRepository {
 
 	public List<Student> findAll() {
 		return new ArrayList<>(store.values());
+	}
+
+	public List<Student> findAllByGrade(int grade) {
+		return store.values().stream()
+			.filter(student -> student.getGrade() == grade)
+			.collect(Collectors.toList());
 	}
 
 }

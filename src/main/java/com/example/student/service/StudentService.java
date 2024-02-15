@@ -29,4 +29,11 @@ public class StudentService {
 			.map(StudentResponseDto::new)
 			.collect(Collectors.toList());
 	}
+
+	public List<StudentResponseDto> findAllByGrade(int grade) {
+		List<Student> studentList = studentRepository.findAllByGrade(grade);
+		return studentList.stream()
+			.map(StudentResponseDto::new)
+			.collect(Collectors.toList());
+	}
 }

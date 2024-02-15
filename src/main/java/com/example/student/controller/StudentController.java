@@ -33,11 +33,11 @@ public class StudentController {
 		return makeResponse(responseDtoList);
 	}
 
-	private ApiResponse<StudentResponseDto> makeResponse(StudentResponseDto responseDto) {
+	private <T> ApiResponse<T> makeResponse(T responseDto) {
 		return new ApiResponse<>(responseDto);
 	}
 
-	private ApiResponse<StudentResponseDto> makeResponse(List<StudentResponseDto> responseDto) {
+	private <T> ApiResponse<T> makeResponse(List<T> responseDto) {
 		return new ApiResponse<>(responseDto);
 	}
 

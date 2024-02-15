@@ -19,6 +19,10 @@ public class StudentController {
 	@PostMapping("/student")
 	public ApiResponse<StudentResponseDto> save(@RequestParam("name") String name, @RequestParam("grade") int grade) {
 		StudentResponseDto responseDto = studentService.save(name, grade);
+		return makeResponse(responseDto);
+	}
+
+	private ApiResponse<StudentResponseDto> makeResponse(StudentResponseDto responseDto) {
 		return new ApiResponse<>(responseDto);
 	}
 }

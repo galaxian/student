@@ -1,6 +1,9 @@
 package com.example.student.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +27,17 @@ public class StudentController {
 		return makeResponse(responseDto);
 	}
 
+	@GetMapping("/student")
+	public ApiResponse findAll() {
+		List<StudentResponseDto> responseDtoList = studentService.findAll();
+		return makeResponse(responseDtoList);
+	}
+
 	private ApiResponse<StudentResponseDto> makeResponse(StudentResponseDto responseDto) {
+		return new ApiResponse<>(responseDto);
+	}
+
+	private ApiResponse<StudentResponseDto> makeResponse(List<StudentResponseDto> responseDto) {
 		return new ApiResponse<>(responseDto);
 	}
 

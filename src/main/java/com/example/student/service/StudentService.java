@@ -1,5 +1,8 @@
 package com.example.student.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import com.example.student.domain.Student;
@@ -17,6 +20,13 @@ public class StudentService {
 	public StudentResponseDto save(String name, int grade) {
 		Student student = Student.of(name, grade);
 		Student saveStudent = studentRepository.save(student);
-		return new StudentResponseDto(saveStudent.getName(), saveStudent.getGrade());
+		return new StudentResponseDto(saveStudent);
+	}
+
+	public List<StudentResponseDto> findAll() {
+		List<Student> studentList = studentRepository.findAll();
+		return studentList.stream()
+			.map(StudentResponseDto::new)
+			.collect(Collectors.toList());
 	}
 }

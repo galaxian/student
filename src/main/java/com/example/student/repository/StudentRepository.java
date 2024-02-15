@@ -1,6 +1,8 @@
 package com.example.student.repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
@@ -17,6 +19,10 @@ public class StudentRepository {
 		student.addId(++sequence);
 		store.put(student.getId(), student);
 		return student;
+	}
+
+	public List<Student> findAll() {
+		return new ArrayList<>(store.values());
 	}
 
 }
